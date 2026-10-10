@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood Swings - Movies for how you feel right now</title>
+  <meta name="description" content="Pick a mood, get films that match it. A film finder built around how you feel rather than what is popular.">
+  <meta name="theme-color" content="#14121C">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <a class="skip" href="#moods">Skip to moods</a>
+
+  <header class="shell">
+    <nav class="nav">
+      <a class="nav__logo" href="index.html">Mood<span>Swings</span></a>
+      <div class="nav__spacer"></div>
+
+      <!-- A plain GET form. It produces results.html?q=… with no JavaScript,
+           which means search works before a single script has parsed. -->
+      <form class="search" action="results.html" method="get" role="search">
+        <label class="skip" for="q">Search films</label>
+        <input class="search__input" type="search" id="q" name="q" placeholder="Search a title…" required>
+        <button class="btn btn--ghost" type="submit">Search</button>
+      </form>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <h1 class="hero__lede">What are you <em>in the mood</em> for?</h1>
+      <p class="hero__sub">
+        Not what is trending. Not what an algorithm thinks you watched last.
+        Tell us what you want to feel tonight and we will find something that fits.
+      </p>
+    </section>
+
+    <!-- Each mood is a real link, so it is keyboard-navigable, shareable,
+         and openable in a new tab for free. No click handlers needed. -->
+    <ul class="moods" id="moods">
+      <li>
+        <a class="mood" href="results.html?mood=happy" style="--hue:#F2B441">
+          <span class="mood__art"><img src="assets/images/happy.webp" alt="" width="640" height="640" fetchpriority="high"></span>
+          <span class="mood__body">
+            <span class="mood__label">Happy</span>
+            <span class="mood__caption">Good vibes only</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="mood" href="results.html?mood=sad" style="--hue:#5C8AD1">
+          <span class="mood__art"><img src="assets/images/sad.webp" alt="" width="640" height="640"></span>
+          <span class="mood__body">
+            <span class="mood__label">Sad</span>
+            <span class="mood__caption">Need a good cry</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="mood" href="results.html?mood=angry" style="--hue:#E05A45">
+          <span class="mood__art"><img src="assets/images/angry.webp" alt="" width="640" height="640"></span>
+          <span class="mood__body">
+            <span class="mood__label">Angry</span>
+            <span class="mood__caption">Something with teeth</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="mood" href="results.html?mood=chill" style="--hue:#4FB09B">
+          <span class="mood__art"><img src="assets/images/chill.webp" alt="" width="640" height="640" loading="lazy"></span>
+          <span class="mood__body">
+            <span class="mood__label">Chill</span>
+            <span class="mood__caption">Low stakes, warm blanket</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="mood" href="results.html?mood=surprise" style="--hue:#9B7BD4">
+          <span class="mood__art"><img src="assets/images/surprise.webp" alt="" width="640" height="640" loading="lazy"></span>
+          <span class="mood__body">
+            <span class="mood__label">Surprise me</span>
+            <span class="mood__caption">Anything but predictable</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="mood" href="results.html?mood=romantic" style="--hue:#E37098">
+          <span class="mood__art"><img src="assets/images/romantic.webp" alt="" width="640" height="640" loading="lazy"></span>
+          <span class="mood__body">
+            <span class="mood__label">Romantic</span>
+            <span class="mood__caption">Hopeless or otherwise</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="mood" href="results.html?mood=scared" style="--hue:#A3C93A">
+          <span class="mood__art"><img src="assets/images/scared.webp" alt="" width="640" height="640" loading="lazy"></span>
+          <span class="mood__body">
+            <span class="mood__label">Scared</span>
+            <span class="mood__caption">Thrill seeking</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="shell">
+    <div class="footer">
+      <p>Built by Zubia Tahseen</p>
+      <p>Film data from <a href="https://www.themoviedb.org/" rel="noopener">TMDB</a>. This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+    </div>
+  </footer>
+</body>
+</html>
