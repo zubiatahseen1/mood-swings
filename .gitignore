@@ -1,5 +1,3 @@
-# Never commit the API key
-js/config.js
 
 .DS_Store
 node_modules/
