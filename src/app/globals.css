@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens.
+ * shadcn/ui components read these CSS variables (bg-background, text-primary...).
+ * --accent-mood is the one variable each mood overrides: the whole page follows it.
+ */
+:root {
+  --background: #14121c;
+  --foreground: #edeaf5;
+  --card: #1e1b29;
+  --card-foreground: #edeaf5;
+  --popover: #1e1b29;
+  --popover-foreground: #edeaf5;
+  --primary: var(--accent-mood);
+  --primary-foreground: #14121c;
+  --secondary: #262233;
+  --secondary-foreground: #edeaf5;
+  --muted: #262233;
+  --muted-foreground: #9a93b0;
+  --accent: #262233;
+  --accent-foreground: #edeaf5;
+  --destructive: #e05a45;
+  --border: #332e44;
+  --input: #332e44;
+  --ring: var(--accent-mood);
+  --radius: 0.625rem;
+
+  --accent-mood: #f2b441;
+}
+
+@theme inline {
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-mood: var(--accent-mood);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/60;
+  }
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
