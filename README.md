@@ -73,11 +73,6 @@ Then open http://localhost:3000. The movie pages work without Supabase; accounts
 
 The end-to-end tests start a mock TMDB server (`e2e/mock-tmdb.mjs`), so they need no API key and always return the same results.
 
-## Deploy to Vercel
-
-1. Import this repo at [vercel.com/new](https://vercel.com/new). It detects Next.js automatically.
-2. Add the environment variables `TMDB_API_KEY`, `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
-3. Deploy. Then, in Supabase, set the Site URL to your Vercel URL and add `https://<your-app>.vercel.app/auth/callback` to the redirect URLs.
 
 ## Credits
 
