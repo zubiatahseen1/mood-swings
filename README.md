@@ -6,11 +6,11 @@ Most movie sites show you what's popular. I wanted one that helps you decide wha
 
 Pick a mood, and Mood Swings suggests 12 movies to match. Not feeling any of them? Hit reroll for 12 more. If you sign in, you can save films to a watchlist and tell the app what you actually ended up watching. After a few of those picks, that mood starts suggesting more films like the ones you chose.
 
-## Where this started
+## Two versions
 
-The [first version](https://github.com/zubiatahseen1/mood-swings/tree/v1) was plain HTML, CSS and JavaScript, with no framework. It worked, but it had limits: my TMDB API key was visible to anyone who opened the browser's dev tools, there were no accounts, and nothing was tested.
+I built the [first version](https://github.com/zubiatahseen1/mood-swings/tree/v1) in plain HTML, CSS and JavaScript on purpose, with no framework and no build step, to see how far a small, fast vanilla app could go. Because it ran entirely in the browser, the TMDB key had to ship to the client. That's an accepted trade-off for a read-only key, but it capped what the app could become.
 
-So I rebuilt it. The idea is the same; almost everything underneath is new. The original code is still here under the `v1` tag if you'd like to compare.
+Version 2 takes the same idea and builds it the way I would for a production team: a server layer that keeps the key private and caches responses, user accounts backed by a real database, typed code throughout, and automated tests running in CI. The original is kept under the `v1` tag.
 
 ## What I built it with
 
@@ -18,7 +18,7 @@ Next.js, React and TypeScript for the app itself, styled with Tailwind CSS and s
 
 ## Things I'm happy with
 
-**The API key is private now.** The browser never talks to TMDB directly anymore. It asks my own server, which holds the key and caches the responses, so popular moods load quickly and I'm not calling TMDB over and over for the same list.
+**A server layer for TMDB.** The browser never talks to TMDB directly. It asks the app's own API routes, which hold the key and cache responses on the server, so popular moods load quickly and TMDB isn't called over and over for the same list.
 
 **Rerolls feel instant.** Instead of fetching 12 films at a time, the app grabs a bigger pool, shuffles it, and deals from that. It only goes back for more when the pool runs low. The mood, the runtime filter and how many times you've rerolled are all saved in the URL, so the back button works and you can send someone your exact results.
 
@@ -28,7 +28,7 @@ Next.js, React and TypeScript for the app itself, styled with Tailwind CSS and s
 
 **Clear error messages.** If something goes wrong, the app tells you what happened: no connection, too many requests, a film that doesn't exist. Not just "something went wrong".
 
-**Tested properly.** Unit tests cover the shuffling and ranking logic and the input validation. End-to-end tests click through the real app (choosing a mood, filtering, rerolling, searching, logging in) on desktop and on a phone-sized screen. They run against a fake version of TMDB, so the results are the same every time and no API key is needed.
+**Automated tests.** Unit tests cover the shuffling and ranking logic and the input validation. End-to-end tests click through the real app (choosing a mood, filtering, rerolling, searching, logging in) on desktop and on a phone-sized screen. They run against a fake version of TMDB, so the results are the same every time and no API key is needed.
 
 ## Running it yourself
 
