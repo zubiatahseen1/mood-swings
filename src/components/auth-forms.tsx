@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { CircleAlert, MailCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -72,12 +73,32 @@ export function AuthForms() {
     });
     if (error) return setFormError(error.message);
     // With email confirmation on, Supabase returns no session until the link is clicked.
-    if (!data.session) return setNotice(`Check ${email} for a link to confirm your account.`);
+    if (!data.session) return setNotice(`We sent a confirmation link to ${email}. Open it to finish creating your account.`);
     done();
   });
 
   return (
     <div className="mx-auto max-w-sm">
+      {/* Messages sit above the form so they're the first thing people see. */}
+      {notice && (
+        <div role="status" className="mb-4 flex gap-3 rounded-lg border border-mood/40 bg-mood/10 p-4 text-sm">
+          <MailCheck className="mt-0.5 size-5 shrink-0 text-mood" aria-hidden="true" />
+          <div>
+            <p className="font-semibold">Check your email</p>
+            <p className="mt-1 text-muted-foreground">{notice}</p>
+          </div>
+        </div>
+      )}
+      {formError && (
+        <div
+          role="alert"
+          className="mb-4 flex gap-3 rounded-lg border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive"
+        >
+          <CircleAlert className="mt-0.5 size-5 shrink-0" aria-hidden="true" />
+          <p>{formError}</p>
+        </div>
+      )}
+
       <Tabs
         defaultValue="login"
         onValueChange={() => {
@@ -179,16 +200,6 @@ export function AuthForms() {
         </TabsContent>
       </Tabs>
 
-      {formError && (
-        <p role="alert" className="mt-4 text-sm text-destructive">
-          {formError}
-        </p>
-      )}
-      {notice && (
-        <p role="status" className="mt-4 text-sm text-muted-foreground">
-          {notice}
-        </p>
-      )}
     </div>
   );
 }

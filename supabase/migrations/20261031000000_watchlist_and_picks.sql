@@ -1,11 +1,3 @@
--- Mood Swings 2: the two tables the app needs.
---
---   watchlist  films a user saved for later
---   picks      films a user said they are watching, per mood.
---              Their genres tune that mood's future suggestions.
---
--- Row Level Security makes every row private to its owner: the browser
--- talks to Postgres directly, so these policies are the real access control.
 
 create table public.watchlist (
   id           uuid primary key default gen_random_uuid(),
@@ -36,7 +28,6 @@ create index watchlist_user_created_idx on public.watchlist (user_id, created_at
 alter table public.watchlist enable row level security;
 alter table public.picks enable row level security;
 
--- (select auth.uid()) is evaluated once per query instead of once per row.
 create policy "Users read their own watchlist" on public.watchlist
   for select to authenticated using ((select auth.uid()) = user_id);
 create policy "Users add to their own watchlist" on public.watchlist

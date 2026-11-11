@@ -14,7 +14,7 @@ export default function WatchlistPage() {
         <h1 className="text-4xl font-bold">Your watchlist</h1>
         <p className="mt-1 text-muted-foreground">Films you saved for later.</p>
       </header>
-      {/* The session is checked on the server, per request, behind a boundary. */}
+      {}
       <Suspense fallback={<MovieGridSkeleton count={6} />}>
         <RequireUser />
       </Suspense>

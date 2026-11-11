@@ -23,7 +23,6 @@ export function useWatchlist() {
   });
 }
 
-/** Adds or removes a film, then refetches so every screen agrees. */
 export function useToggleWatchlist() {
   const { user } = useUser();
   const queryClient = useQueryClient();

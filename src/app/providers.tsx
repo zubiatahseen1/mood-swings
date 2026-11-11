@@ -40,7 +40,7 @@ export function Providers({ children }: { children: ReactNode }) {
     <QueryClientProvider client={getQueryClient()}>
       <AuthListener />
       {children}
-      <Toaster position="bottom-center" />
+      <Toaster position="top-center" />
     </QueryClientProvider>
   );
 }

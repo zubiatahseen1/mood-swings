@@ -4,15 +4,10 @@ import { discoverQuerySchema } from "@/lib/schemas";
 import { getDiscoverPage } from "@/lib/tmdb";
 import { toMovie, type MoviePage } from "@/lib/types";
 
-/** TMDB pages per batch. Rerolling deals from this pool before fetching more. */
+
 const PAGES_PER_BATCH = 3;
-/** Past roughly page 20, discover results get obscure. */
 const MAX_PAGE = 20;
 
-/**
- * GET /api/discover?mood=happy&runtime=short&batch=0
- * Returns one batch (3 TMDB pages) of films for a mood, poster-only.
- */
 export async function GET(request: Request) {
   const query = Object.fromEntries(new URL(request.url).searchParams);
   const parsed = discoverQuerySchema.safeParse(query);

@@ -16,29 +16,29 @@ export default function HomePage() {
         </p>
       </section>
 
-      <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4" data-testid="mood-list">
+      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7" data-testid="mood-list">
         {MOOD_KEYS.map((key, index) => {
           const mood = MOODS[key];
           return (
             <li key={key}>
               <Link
                 href={`/mood/${key}`}
-                className="group block overflow-hidden rounded-xl border bg-card transition-[border-color,transform] duration-200 outline-none hover:-translate-y-0.5 hover:border-[var(--hue)] focus-visible:border-[var(--hue)] focus-visible:ring-[3px] focus-visible:ring-[var(--hue)]/40"
+                className="group block h-full overflow-hidden rounded-xl border bg-card transition-[border-color,transform] duration-200 outline-none hover:-translate-y-0.5 hover:border-[var(--hue)] focus-visible:border-[var(--hue)] focus-visible:ring-[3px] focus-visible:ring-[var(--hue)]/40"
                 style={{ "--hue": mood.accent } as React.CSSProperties}
               >
-                <span className="relative block aspect-square overflow-hidden">
+                <span className="relative block aspect-[4/3] overflow-hidden">
                   <Image
                     src={`/moods/${key}.webp`}
                     alt=""
                     fill
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                    sizes="(min-width: 1024px) 15vw, (min-width: 640px) 25vw, 50vw"
                     priority={index < 4}
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </span>
-                <span className="block p-4">
-                  <span className="block font-display text-lg font-semibold">{mood.label}</span>
-                  <span className="block text-sm text-muted-foreground">{mood.caption}</span>
+                <span className="block p-3">
+                  <span className="block font-display text-base font-semibold">{mood.label}</span>
+                  <span className="block text-xs text-muted-foreground">{mood.caption}</span>
                 </span>
               </Link>
             </li>

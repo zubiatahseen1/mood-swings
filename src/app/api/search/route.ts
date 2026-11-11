@@ -3,7 +3,6 @@ import { searchQuerySchema } from "@/lib/schemas";
 import { searchMovies } from "@/lib/tmdb";
 import { toMovie, type MoviePage } from "@/lib/types";
 
-/** GET /api/search?q=inception&page=1 */
 export async function GET(request: Request) {
   const query = Object.fromEntries(new URL(request.url).searchParams);
   const parsed = searchQuerySchema.safeParse(query);

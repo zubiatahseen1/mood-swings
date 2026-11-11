@@ -6,7 +6,6 @@ import type { MoodKey } from "@/lib/moods";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import { useUser } from "./use-user";
 
-/** Every film you said you are watching. Used to tune future suggestions. */
 export function usePicks() {
   const { user } = useUser();
 

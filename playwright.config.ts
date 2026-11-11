@@ -3,11 +3,6 @@ import { defineConfig, devices } from "@playwright/test";
 const PORT = 3100;
 const MOCK_TMDB_PORT = 4010;
 
-/**
- * End-to-end tests run against the real app with a fake TMDB
- * (e2e/mock-tmdb.mjs), so they are deterministic and need no API key.
- * In CI the app is built first and served with `next start`.
- */
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: true,
@@ -24,7 +19,6 @@ export default defineConfig({
       testIgnore: /responsive\.spec\.ts/,
       use: {
         ...devices["Desktop Chrome"],
-        // Optional: point at an already-installed Chromium.
         launchOptions: process.env.PW_CHROMIUM_PATH
           ? { executablePath: process.env.PW_CHROMIUM_PATH }
           : undefined,
